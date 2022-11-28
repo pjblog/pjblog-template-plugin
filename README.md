@@ -74,7 +74,7 @@ $ npm run advance:watch
 $ npm run advance:build
 ```
 
-> 在开发高级用用页面的时候，我们推荐使用`antd@5.x` + `@pjblog/hooks`模块进行开发。
+> 在开发高级用用页面的时候，我们推荐使用`antd@5.x` + `@pjblog/hooks`模块进行开发。请将高级项目开发中的模块依赖全部写入`devDependencies`中，而非`dependencies`，这点很重要。
 
 ## Start PJBlog
 
