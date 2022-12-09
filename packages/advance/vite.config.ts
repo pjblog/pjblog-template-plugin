@@ -6,7 +6,6 @@ const PKG = require('../../package.json');
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: `/__plugin__/${PKG.name}/`,
   plugins: [react()],
   build: {
     outDir: resolve(__dirname, '../../dist/advance'),
@@ -14,8 +13,8 @@ export default defineConfig({
     lib: {
       entry: 'src/main.tsx',
       name: PKG.name.replace(/\-/g, '_'),
-      fileName: 'index',
-      formats: ['umd']
+      fileName: 'index.[hash]',
+      formats: ['umd'],
     },
   },
   define: {

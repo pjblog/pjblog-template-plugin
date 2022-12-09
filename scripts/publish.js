@@ -11,12 +11,14 @@ const publishDictionary = resolve(cwd, '.publish');
 const source_packages_widget_dictionary = resolve(cwd, 'dist', 'widget');
 const source_packages_advance_dictionary = resolve(cwd, 'dist', 'advance');
 const source_readme_file = resolve(cwd, 'README.md');
+const source_configs_file = resolve(cwd, 'pjblog.configs.json');
 
 const target_packages_dictionary = resolve(publishDictionary, 'dist');
 const target_packages_widget_dictionary = resolve(target_packages_dictionary, 'widget');
 const target_packages_advance_dictionary = resolve(target_packages_dictionary, 'advance');
 const target_readme_file = resolve(publishDictionary, 'README.md');
 const target_package_json_file = resolve(publishDictionary, 'package.json');
+const target_configs_file = resolve(publishDictionary, 'pjblog.configs.json');
 
 ensureDirSync(target_packages_dictionary);
 
@@ -26,6 +28,11 @@ copySync(source_packages_widget_dictionary, target_packages_widget_dictionary);
 // 复制README.md
 if (existsSync(source_readme_file)) {
   copyFileSync(source_readme_file, target_readme_file);
+}
+
+// 复制配置文件
+if (existsSync(source_configs_file)) {
+  copyFileSync(source_configs_file, target_configs_file);
 }
 
 // 复制高级模块
@@ -44,7 +51,7 @@ const pkg = {
   homepage: PKG.homepage,
   keywords: PKG.keywords,
   main: PKG.main,
-  files: ['dist'],
+  files: PKG.files || ['dist'],
   dependencies: PKG.dependencies || {},
   pjblog: PKG.pjblog,
 }
@@ -52,14 +59,14 @@ const pkg = {
 // 写入插件元信息
 writeFileSync(target_package_json_file, JSON.stringify(pkg, null, 2), 'utf8');
 
-spawn('npm', ['publish'].concat(argvs), {
-  cwd: publishDictionary,
-  stdio: 'inherit',
-}).on('exit', code => {
-  if (code === 0) {
-    console.log('发布成功');
-  } else {
-    console.error('发布失败');
-  }
-  removeSync(publishDictionary);
-})
+// spawn('npm', ['publish'].concat(argvs), {
+//   cwd: publishDictionary,
+//   stdio: 'inherit',
+// }).on('exit', code => {
+//   if (code === 0) {
+//     console.log('发布成功');
+//   } else {
+//     console.error('发布失败');
+//   }
+//   removeSync(publishDictionary);
+// })
