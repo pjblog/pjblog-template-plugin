@@ -59,14 +59,14 @@ const pkg = {
 // 写入插件元信息
 writeFileSync(target_package_json_file, JSON.stringify(pkg, null, 2), 'utf8');
 
-// spawn('npm', ['publish'].concat(argvs), {
-//   cwd: publishDictionary,
-//   stdio: 'inherit',
-// }).on('exit', code => {
-//   if (code === 0) {
-//     console.log('发布成功');
-//   } else {
-//     console.error('发布失败');
-//   }
-//   removeSync(publishDictionary);
-// })
+spawn('npm', ['publish'].concat(argvs), {
+  cwd: publishDictionary,
+  stdio: 'inherit',
+}).on('exit', code => {
+  if (code === 0) {
+    console.log('发布成功');
+  } else {
+    console.error('发布失败');
+  }
+  removeSync(publishDictionary);
+})
