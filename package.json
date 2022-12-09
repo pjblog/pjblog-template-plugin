@@ -1,7 +1,7 @@
 {
   "name": "pjblog-plugin-demo",
   "description": "pjblog template plugin description",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "repository": "https://github.com/pjblog/pjblog-template-plugin",
   "homepage": "https://npmjs.com/pjblog-template-plugin",
   "cache": "file",
