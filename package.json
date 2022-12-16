@@ -14,14 +14,6 @@
     "pjblog",
     "plugin"
   ],
-  "orm": {
-    "type": "mysql",
-    "host": "127.0.0.1",
-    "port": 3306,
-    "username": "root",
-    "password": "fdnsyj211314",
-    "database": "npm"
-  },
   "main": "dist/widget/index.js",
   "files": [
     "dist",
@@ -43,13 +35,10 @@
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
     "fs-extra": "^10.1.0",
-    "mysql2": "^2.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^4.9.4",
-    "vite": "^3.2.3"
-  },
-  "peerDependencies": {
+    "vite": "^3.2.3",
     "@pjblog/bootstrap": "^1.1.0",
     "@types/koa": "^2.13.5"
   },
