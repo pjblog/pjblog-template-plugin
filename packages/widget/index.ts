@@ -5,7 +5,7 @@ import { Http, getWaterFall } from '@pjblog/http';
 import { Plugin } from '@pjblog/core';
 import { BlogPluginEntity } from './entity';
 import { TestController } from './controller';
-import { GetControlArticles } from '@pjblog/core';
+import { _GetArticlesController } from '@pjblog/core';
 import { IConfigs } from './utils';
 
 @Provider
@@ -59,15 +59,14 @@ export default class Test extends Plugin<IConfigs> {
    */
   public async initialize(): Promise<void | (() => Promise<void>)> {
     // 添加路由
-    this.http.addController(this, TestController);
+    this.http.addController(TestController);
 
     // 通过waterFallHooks动态拦截嵌入插件功能
-    const water = getWaterFall(GetControlArticles);
-    water.add('getList2', {
+    const water = getWaterFall(_GetArticlesController);
+    water.add('test', {
       after: 'getList',
-      callback(ctx, value) {
-        console.log('getList2', ctx.path, value.length);
-        return value;
+      callback(controller) {
+        console.log('getList2', controller.req, controller.res);
       }
     })
 
@@ -76,7 +75,7 @@ export default class Test extends Plugin<IConfigs> {
     
     this.logger.info('TEST Initialized.');
     return async () => {
-      water.del('getList2');
+      water.del('test');
       this.http.delController(TestController);
       this.logger.info('TEST Terminated.');
     }

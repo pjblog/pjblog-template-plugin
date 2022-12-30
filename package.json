@@ -39,7 +39,7 @@
     "react-dom": "^18.2.0",
     "typescript": "^4.9.4",
     "vite": "^3.2.3",
-    "@pjblog/bootstrap": "^1.1.0",
+    "@pjblog/bootstrap": "^1.2.0",
     "@types/koa": "^2.13.5"
   },
   "pjblog": {

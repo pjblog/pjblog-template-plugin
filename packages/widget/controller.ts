@@ -1,20 +1,14 @@
 import { Controller } from './utils';
-import { Component, Water } from '@pjblog/http';
-import type TEST from './index';
-
-type IResponse = number;
+import { Component, Water, Request } from '@pjblog/http';
 
 @Controller('GET', '/ping')
-export class TestController extends Component<TEST, IResponse> {
-  public response(): IResponse {
-    return Date.now();
+export class TestController extends Component<number> {
+  constructor(req: Request) {
+    super(req, Date.now());
   }
 
-  @Water()
+  @Water(1)
   public zzz() {
-    return (context: IResponse) => {
-      console.log(context)
-      console.log('done')
-    }
+    console.log('done');
   }
 }
